@@ -1,0 +1,65 @@
+version: 1
+
+sources:
+  - name: raw
+    schema: cc_funnel
+    tables:
+      - name: cc_funnel
+        identifier: raw_cc_funnel
+        columns:
+          - name: company
+          - name: sector
+          - name: date_lead
+          - name: opportunity_DATE
+          - name: date_customer
+          - name: date_lost
+    
+      - name: priority
+        identifier: raw_cc_funnel_priority
+        columns:
+          - name: compny_NAME
+            test:
+              - unique 
+              - not_null
+          - name: priority
+
+models:
+  - name: stg_raw__cc_funnel
+    description: Blabla
+    columns:
+      - name: company
+      - name: sector
+        description: indica sector
+      - name: date_lead
+      - name: date_opportunity
+      - name: date_customer
+      - name: date_lost
+
+  - name: stg_raw__priority
+    columns:
+      - name: company_name
+      - name: priority 
+
+  - name: cc_funnel
+    columns:
+      - name: company
+      - name: sector
+      - name: priority
+      - name: date_lead
+      - name: date_opportunity
+      - name: date_customer
+      - name: date_lost
+      - name: deal_stage
+      - name: lead2customer
+      - name: lead2opportunity
+      - name: opportunity2customer
+      - name: lead2customer_time
+      - name: lead2opportunity_time
+      - name: opportunity2custome
+  
+  - name: dim_priority_sector
+    columns:
+      - name: sector
+      - name: priority
+      - name: count_sector
+          
