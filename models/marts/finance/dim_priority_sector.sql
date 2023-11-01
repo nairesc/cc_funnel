@@ -1,7 +1,7 @@
-{{ config(materialized= 'table') }}
+-- {{ config(materialized= 'table') }}
 
 
-SELECT sector
+SELECT sector 
     , priority
     , COUNT(*) count_sector
 FROM {{ ref('cc_funnel') }}
